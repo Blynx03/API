@@ -1,0 +1,228 @@
+:root {
+    --roboto: 'Roboto', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--roboto);
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.main-page {
+    width: 100%;
+    height: 100vh;
+}
+
+.main-page:before {
+    content: "";
+    background-image: url("images/nba.png");
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 0px;
+    background-size: 130%;
+    background-position: -400px -20px;
+    filter: grayscale(45%);
+    /* object-fit: fill; */
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+}
+
+.main-container {
+    height: auto;
+}
+
+.main-container > div:nth-child(even) {
+    background-color: gray;
+}
+
+.header-container {
+    height: 11%;
+    padding-top: 0.3rem;
+}
+
+.header-container > h1{
+    font-size: 6rem;
+}
+
+.nba-text {
+    color: rgb(0, 101, 209);
+}
+
+.header-logo {
+    background-image: none;
+    width: 200px;
+    height: 160px;
+    z-index: 2;
+    animation: bounce 4s ease-out forwards;
+}
+
+.header-text {
+    animation: fly-down 2s ease-out forwards;
+    letter-spacing: 0.5rem;
+}
+
+/* .teams-col:before {
+    opacity: .5;
+} */
+
+.choice-container {
+    height: 8%;
+}
+
+.btn-category, .dropdown-menu, .dropdown-item {
+    z-index: 10;
+}
+.btn-category {
+    height: 2.8rem;
+    transform: translateX(-18%);
+    animation: fly-right 2s ease forwards;
+}
+
+.category-container {
+    position: relative;
+    animation: appear 2s ease forwards,
+            enlarge 2s ease forwards;
+}
+
+.teams-desc-container {
+    width: 90%;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 0.8fr 2fr;
+    grid-template-areas: "team-list team-desc";
+}
+
+
+.sub-title {
+    margin-left: 50%;
+    transform: translateX(-25%);
+}
+
+.left-container {
+    grid-area: team-list;
+    display: grid;
+    grid-template-rows: 0.5fr 10fr;
+    grid-template-areas: "sub-title"
+                            "list-team";
+}
+
+.right-container {
+    grid-area: team-desc;
+}
+
+.category-title {
+    grid-area: sub-title;
+    margin-left: 8%;
+}
+
+.list-team {
+    grid-area: list-team;
+}
+
+.team-content {
+    cursor: pointer;
+    /* width: 30%; */
+}
+
+.team-logo {
+    width: 26px;
+    height:26px;
+    margin-left: 20px;
+}
+
+@mixin custom-container($padding-x: $container-padding-x, ) {
+    
+}
+
+.pacers:hover, .knicks:hover, .celtics:hover, .grizzlies:hover,
+.raptors:hover, .thunder:hover, .pistons:hover, .clippers:hover,
+.warriors:hover, .p76ers:hover, .jazz:hover, .kings:hover, .cavaliers:hover,
+.rockets:hover, .blazers:hover, .hawks:hover, .magic:hover {
+    background-color: #191919;
+    filter: opacity(.6);
+    font-weight: bold;
+    scale: 1.1;
+    color: orange !important;
+}
+
+.desc-container {
+    margin: 0 5% 5% 30%;
+    padding: 2rem;
+    height: 75%;
+    width: 65% !important;
+    position: absolute;
+    top: 17%;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 40% 30% 30%;
+    grid-template-areas: "nba-logo nba-logo nba-logo"
+                        "team-logo conference conference"
+                        "team-logo division division";
+}
+
+.desc-nba-logo {
+    margin: 0 auto;
+    width: 60%;
+    height: 100%;
+    grid-area: nba-logo;
+    /* background-image: url(images/nba-logo2.png); */
+    /* background-repeat: no-repeat; */
+    /* background-size: 100%; */
+    /* object-fit: fill; */
+    z-index: 1;
+    opacity: 1;
+}
+
+.desc-team-logo {
+    width: 90%;
+    height: 100%;
+    grid-area: team-logo;
+    object-fit: cover;
+}
+
+@keyframes bounce {
+    0% { margin-top: -200px; }
+    21%, 23% { margin-top: -100px; }
+    10%, 32%, 52%, 68%, 80%, 88%, 95%, 100% { margin-top: .5rem; }
+    41%, 43% { margin-top: -60px; }
+    60%, 62% { margin-top: -35px; }
+    75%, 76.5% { margin-top: -15px; }
+    85%, 86.5% { margin-top: -5px; }
+    92%, 93% { margin-top: -2px; }
+    98%, 99% { margin-top: -1px; }
+}
+
+@keyframes fly-down {
+    0% { margin-top: -50%; }
+    100% { margin-top: 0%; }
+}
+
+@keyframes fly-right {
+    0% { margin-left: -100%; }
+    100% { margin-left: 0%; }
+}
+
+@keyframes appear {
+    0% { opacity: 0; }    
+    100% { opacity: 1; }
+}
+
+@keyframes disappear {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes enlarge {
+    0% { scale: 0.2; }
+    100% { scale: 1; }
+}
+
+th > div:nth-child(even) {
+    background-color: aquamarine;
+}
