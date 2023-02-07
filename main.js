@@ -81,7 +81,7 @@ function showTeams() {
   
   const teamAndDescContainer = document.createElement('div');
   table.appendChild(teamAndDescContainer);
-  teamAndDescContainer.className = "teams-desc-container px-4 py-4 mx-auto bg-info bg-opacity-25 rounded-5";
+  teamAndDescContainer.className = "teams-desc-container px-4 py-4 mx-auto bg-light bg-opacity-25 rounded-5";
   
   const newDiv1 = document.createElement('div');
   const newDiv2 = document.createElement('div');
@@ -97,23 +97,23 @@ function showTeams() {
   listTeam.className = "list-team bg-transparent fs-6 ";
 
   const descContainer = teamAndDescContainer.appendChild(newDiv2);
-  descContainer.className = 'right-container bg-warning rounded-4';
+  // descContainer.className = 'right-container bg-warning bg-opacity-25 rounded-4';
   
 
   const arrTeam = [];
   const akaTeam = [];
-  const descDiv = document.createElement('div');
-  descContainer.appendChild(descDiv);
+  // const descDiv = document.createElement('div');
+  // descContainer.appendChild(descDiv);
   
   // Team description on hover
   let t1 = document.createElement('div');
   let t2 = document.createElement('div');
   let t3 = document.createElement('div');
   let t4 = document.createElement('div');
-  const tDiv1 = descDiv.appendChild(t1);
-  const tDiv2 = descDiv.appendChild(t2);
-  const tDiv3 = descDiv.appendChild(t3);
-  const tDiv4 = descDiv.appendChild(t4);
+  const tDiv1 = descContainer.appendChild(t1);
+  const tDiv2 = descContainer.appendChild(t2);
+  const tDiv3 = descContainer.appendChild(t3);
+  const tDiv4 = descContainer.appendChild(t4);
   tDiv1.className = "desc-nba-logo t-div1 desc-item"
   tDiv2.className = "desc-team-logo t-div2 desc-item"
   tDiv3.className = "desc-conference t-div3 desc-item"
@@ -132,15 +132,35 @@ function showTeams() {
   }, []);
 
 
-  function handleMouseOver(e) {
-    console.log("mouse over" + e)
-    const chosenTeam = e.target.dataset.value;
-    console.log(chosenTeam);
-    descDiv.className = "desc-container col-8 bg-warning bg-opacity-25 rounded-5 border border-2 border-warning";
-    descDiv.style.animation = "appear 1s ease";
-    tDiv1.innerHTML = `<img src='images/nba-logo2.png' class='logo-nba' />`
-    tDiv2.innerHTML = `<img src='/images/team/${chosenTeam}.png' class='logo-team />`
+  function handleMouseOver(team) {
+
+    descContainer.className = "desc-container col-7 bg-dark bg-opacity-25 rounded-5 border border-2 border-warning";
+    descContainer.style.animation = "appear 1s ease",
+                                    "enlarge 2s ease";
+    tDiv1.innerHTML = `<img src='images/nba-logo2.png' class='logo-nba desc-nba-logo' />`
+    tDiv2.innerHTML = `<img src='images/team/${team}.png' class='logo-team info-team-logo' />`
     // tDiv2.style.backgroundImage = "url(images/team/" + team + ".png";
+    const oneDiv = document.createElement('div');
+    const twoDiv = document.createElement('div');
+    const conferenceDiv = tDiv3.appendChild(oneDiv);
+    const divisionDiv = tDiv3.appendChild(twoDiv);
+    conferenceDiv.className = "conference";
+    divisionDiv.className = "division";
+    conferenceDiv.textContent = "Conference";
+    divisionDiv.textContent = "Division";
+    
+    const child1Div = document.createElement('div');
+    const child2Div = document.createElement('div');
+    const confTitle = conferenceDiv.appendChild(child1Div);
+    const confValue = conferenceDiv.appendChild(child2Div);
+    confTitle.className = "conf-title";
+    confValue.className = "conf-value";
+
+    const findIndex = teams.indexOf(team);
+    console.log("index of team is " + findIndex);
+    confTitle.textContent = "";
+    confValue.textContent = "";
+
    
   }
 
@@ -158,7 +178,12 @@ function showTeams() {
       lastString = "p76ers";
     }
     console.log("akaTeam " + akaTeam);
-    newDiv.innerHTML = newTeams[j] + `<span><img class="team-logo p2" src="images/team/${lastString}.png"></ span>`;
+    let newSpanLogo = document.createElement('span');
+    let spanLogo = listTeam.appendChild(newSpanLogo);
+
+    newDiv.innerHTML = newTeams[j];
+    spanLogo.innerHTML = `<img class="team-logo p2" src="images/team/${lastString}.png">`;
+
     newDiv.style.animation = "enlarge 4s ease forwards";
     newDiv.className = "team-content text-light bg-opacity-75 px-3 py-1 fs-6 ";
 
@@ -170,16 +195,21 @@ function showTeams() {
     //   descDiv.style.animation = "disappear 1s ease forwards";
     // });
   }
-  setTimeout(() => {
+  // setTimeout(() => {
     const addListenToTeams = document.querySelectorAll('.team-content');
     addListenToTeams.forEach(team => {
-      team.addEventListener('mouseover', (event) => {
-        let hoverTeam = event.target.dataset.value;
-        console.log("hover Team = " + hoverTeam);
-        handleMouseOver();
+      team.addEventListener('mouseover', (e) => {
+        let hoverTeam = e.target.dataset.value;
+        handleMouseOver(hoverTeam);
       });
     });
-  }, 100);
+    addListenToTeams.forEach(team => {
+      team.addEventListener('mouseout', (e) => {
+        let hoverTeam = e.target.dataset.value;
+        descContainer.style.animation = "disappear 1s ease forwards";
+      });
+    });
+  // }, 500);
 
 }
 

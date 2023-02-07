@@ -126,6 +126,8 @@ body {
 
 .team-content {
     cursor: pointer;
+    display: inline-block;
+    width: 80%;
     /* width: 30%; */
 }
 
@@ -133,16 +135,19 @@ body {
     width: 26px;
     height:26px;
     margin-left: 20px;
+    float: left;
 }
 
 @mixin custom-container($padding-x: $container-padding-x, ) {
     
 }
 
-.pacers:hover, .knicks:hover, .celtics:hover, .grizzlies:hover,
+/* .pacers:hover, .knicks:hover, .celtics:hover, .grizzlies:hover,
 .raptors:hover, .thunder:hover, .pistons:hover, .clippers:hover,
 .warriors:hover, .p76ers:hover, .jazz:hover, .kings:hover, .cavaliers:hover,
 .rockets:hover, .blazers:hover, .hawks:hover, .magic:hover {
+    */
+.team-content:hover {
     background-color: #191919;
     filter: opacity(.6);
     font-weight: bold;
@@ -154,21 +159,24 @@ body {
     margin: 0 5% 5% 30%;
     padding: 2rem;
     height: 75%;
-    width: 65% !important;
+    width: 60%;
     position: absolute;
     top: 17%;
     left: 0;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 40% 30% 30%;
-    grid-template-areas: "nba-logo nba-logo nba-logo"
-                        "team-logo conference conference"
-                        "team-logo division division";
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1.3fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: ". nba-logo nba-logo nba-logo nba-logo ."
+                        ". nba-logo nba-logo nba-logo nba-logo ."
+                        ". . conference conference conference conference"
+                        "team-logo team-logo conference conference conference conference"
+                        "team-logo team-logo division division division division"
+                        ". . division division division division";
 }
 
 .desc-nba-logo {
     margin: 0 auto;
-    width: 60%;
+    width: auto;
     height: 100%;
     grid-area: nba-logo;
     /* background-image: url(images/nba-logo2.png); */
@@ -180,10 +188,16 @@ body {
 }
 
 .desc-team-logo {
-    width: 90%;
+    width: auto;
     height: 100%;
     grid-area: team-logo;
-    object-fit: cover;
+    /* object-fit: cover; */
+}
+
+.info-team-logo {
+    margin: auto 0;
+    width: 70%;
+    height: 100%;
 }
 
 @keyframes bounce {
