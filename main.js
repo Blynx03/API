@@ -5,10 +5,10 @@ let data = [];
 //   { playerId, first_name, last_name, position, 
 //     team { conference, full_name, teamId, name }
 // }
-const options = {
-    method: 'GET',
-    url:  + choice,
-    };
+// const options = {
+//     method: 'GET',
+//     url:  + choice,
+//     };
   
 const table = document.querySelector(".main-container");
 
@@ -21,7 +21,12 @@ const division = [];
 const teamName = [];
 let avoidRepeat = "";
 let j = 0;
-
+const chosenSet = {
+        teamFull: "",
+        teamAlias: "",
+        teamConference: "",
+        teamDivision: ""
+}
 
 //connect to api
 
@@ -42,6 +47,7 @@ async function connectAPI() {
       division.push(data.data[i].team.division);
       teamName.push(data.data[i].team.full_name);
     }
+    console.log(teams)
 }
 
 // add event listener to dropdown menu
@@ -123,61 +129,65 @@ function showTeams() {
   // tDiv3.classList.add('grid-area', 'conference');
   // tDiv4.classList.add('grid-area', 'division');
 
+    // conference and division containers
+    const oneDiv = document.createElement('div');
+    const twoDiv = document.createElement('div');
+    const confContainer = tDiv3.appendChild(oneDiv);
+    const divisionContainer = tDiv4.appendChild(twoDiv);
+    confContainer.className = "conference fs-3 px-3 pt-1 pb-3 mt-3 border border-3 border-dark shadow rounded-3";
+    divisionContainer.className = "division fs-3 px-3 pt-1 pb-3 border border-3 border-dark shadow rounded-3";
+    confContainer.textContent = "Conference:";
+    divisionContainer.textContent = "Division:";
+    
+    const child1Div = document.createElement('div');
+    const child2Div = document.createElement('div');
+    const conferenceValue = confContainer.appendChild(child1Div);
+    const divisionValue = divisionContainer.appendChild(child2Div);
+    conferenceValue.className = "conf-value fs-4 text-light d-flex justify-content-center";
+    divisionValue.className = "division-value fs-4 text-light d-flex justify-content-center";
+
+
   // removing duplicates
   const newTeams = teams.reduce((accumulator, currentValue) => {
     if (!accumulator.includes(currentValue)) {
       return [...accumulator, currentValue]
+      
     }
     return accumulator;
   }, []);
 
-
-  function handleMouseOver(team) {
-
+  function handleMouseOver(e, key) {
+    let team = teams[key];
+    let arrTeamName = team.split(" ");
+    let lastString = arrTeamName[arrTeamName.length - 1].toLowerCase();
+    let conf = conference[key];
+    let divi = division[key];
+    if (lastString === '76ers') {
+      lastString = "p76ers";
+    }
     descContainer.className = "desc-container col-7 bg-dark bg-opacity-25 rounded-5 border border-2 border-warning";
     descContainer.style.animation = "appear 1s ease",
                                     "enlarge 2s ease";
     tDiv1.innerHTML = `<img src='images/nba-logo2.png' class='logo-nba desc-nba-logo' />`
-    tDiv2.innerHTML = `<img src='images/team/${team}.png' class='logo-team info-team-logo' />`
+    tDiv2.innerHTML = `<img src='images/team/${lastString}.png' class='logo-team info-team-logo' />`
     // tDiv2.style.backgroundImage = "url(images/team/" + team + ".png";
-    const oneDiv = document.createElement('div');
-    const twoDiv = document.createElement('div');
-    const conferenceDiv = tDiv3.appendChild(oneDiv);
-    const divisionDiv = tDiv3.appendChild(twoDiv);
-    conferenceDiv.className = "conference";
-    divisionDiv.className = "division";
-    conferenceDiv.textContent = "Conference";
-    divisionDiv.textContent = "Division";
-    
-    const child1Div = document.createElement('div');
-    const child2Div = document.createElement('div');
-    const confTitle = conferenceDiv.appendChild(child1Div);
-    const confValue = conferenceDiv.appendChild(child2Div);
-    confTitle.className = "conf-title";
-    confValue.className = "conf-value";
 
-    const findIndex = teams.indexOf(team);
-    console.log("index of team is " + findIndex);
-    confTitle.textContent = "";
-    confValue.textContent = "";
-
-   
+    conferenceValue.textContent = conf;
+    divisionValue.textContent = divi;
   }
 
+
+  // showing list of teams on left side with corresponding logo
   for (let j = 0; j < newTeams.length; j++) {
     const createDiv = document.createElement('div');
     const newDiv = listTeam.appendChild(createDiv);  
     
     let arrTeamName = newTeams[j].split(" ");
     let lastString = arrTeamName[arrTeamName.length - 1].toLowerCase();
-    let cleanTeam = [];
-    cleanTeam.push(lastString);
-    
 
     if (lastString === "76ers") {
       lastString = "p76ers";
     }
-    console.log("akaTeam " + akaTeam);
     let newSpanLogo = document.createElement('span');
     let spanLogo = listTeam.appendChild(newSpanLogo);
 
@@ -189,28 +199,34 @@ function showTeams() {
 
     newDiv.setAttribute("id", lastString);
     let addListen = document.getElementById(lastString);
-    addListen.setAttribute('data-value', lastString);
+    newDiv.setAttribute('data-alias', lastString);
+    // newDiv.setAttribute('data-value', teams[j]);  // DOUBLE CHECK THE NEXT THREE LINES IF VALUES NEED TO BE CHANGED OR NEEDED
+    // newDiv.setAttribute('data-conference', conference[j]);
+    // newDiv.setAttribute('data-division', division[j]);
 
     // addListen.addEventListener('mouseout', () => {
     //   descDiv.style.animation = "disappear 1s ease forwards";
     // });
+
+
   }
-  // setTimeout(() => {
+
+
+
+
+  // adding event listeners to teams
     const addListenToTeams = document.querySelectorAll('.team-content');
     addListenToTeams.forEach(team => {
       team.addEventListener('mouseover', (e) => {
-        let hoverTeam = e.target.dataset.value;
-        handleMouseOver(hoverTeam);
+        let chosenTeam = e.target.innerText;
+        let teamIndex = teams.indexOf(chosenTeam);
+        handleMouseOver(e, teamIndex);
       });
     });
-    addListenToTeams.forEach(team => {
-      team.addEventListener('mouseout', (e) => {
-        let hoverTeam = e.target.dataset.value;
-        descContainer.style.animation = "disappear 1s ease forwards";
-      });
+    let rContainer = document.querySelector('.desc-container');
+    rContainer.addEventListener('mouseout', () => {
+      rContainer.style.animation = 'disappear 1s ease forwards';
     });
-  // }, 500);
-
 }
 
 // players category

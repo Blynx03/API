@@ -127,7 +127,7 @@ body {
 .team-content {
     cursor: pointer;
     display: inline-block;
-    width: 80%;
+    width: 70%;
     /* width: 30%; */
 }
 
@@ -195,9 +195,27 @@ body {
 }
 
 .info-team-logo {
-    margin: auto 0;
-    width: 70%;
+    margin: auto 15px;
+    width: 65%;
     height: 100%;
+}
+
+.conference, .division {
+    /* visibility: hidden; */
+    letter-spacing: 3px;
+}
+
+.conf-value, .division-value {
+    justify-self: center;
+
+}
+
+.desc-conference {
+    grid-area: conference;
+}
+
+.desc-division {
+    grid-area: division;
 }
 
 @keyframes bounce {
