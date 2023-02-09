@@ -92,6 +92,7 @@ body {
 .teams-desc-container {
     width: 90%;
     display: grid;
+    height: 90%;
     grid-template-rows: auto;
     grid-template-columns: 0.8fr 2fr;
     grid-template-areas: "team-list team-desc";
@@ -179,10 +180,6 @@ body {
     width: auto;
     height: 100%;
     grid-area: nba-logo;
-    /* background-image: url(images/nba-logo2.png); */
-    /* background-repeat: no-repeat; */
-    /* background-size: 100%; */
-    /* object-fit: fill; */
     z-index: 1;
     opacity: 1;
 }
@@ -191,7 +188,6 @@ body {
     width: auto;
     height: 100%;
     grid-area: team-logo;
-    /* object-fit: cover; */
 }
 
 .info-team-logo {
@@ -201,7 +197,6 @@ body {
 }
 
 .conference, .division {
-    /* visibility: hidden; */
     letter-spacing: 3px;
 }
 
@@ -218,6 +213,71 @@ body {
     grid-area: division;
 }
 
+
+
+/* player category */
+.player-category-container {
+    max-height: 75%;
+}
+
+.max-height-75 {
+    height: 80%;
+}
+
+.player-col-container {
+    height: 90%;
+    width: 90%;
+}
+
+.scroll {
+    max-height: 80%;
+    overflow-y: scroll;
+}
+
+.scroll::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 10px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    /* -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 1); */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.right-container {
+    margin: 0 5% 5% 30%;
+    padding: 2rem;
+    height: 75%;
+    width: 60%;
+    position: absolute;
+    top: 17%;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1.3fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas: ". nba-logo nba-logo nba-logo nba-logo ."
+                        ". nba-logo nba-logo nba-logo nba-logo ."
+                        "team-logo team-logo conference conference conference conference"
+                        "team-logo team-logo conference conference conference conference"
+                        "team-logo team-logo division division division division"
+                        ". . division division division division";
+}
+
+.player-desc-container {
+    margin-left: 32%;
+}
+
+.info-player-pic {
+    object-fit: cover;
+    margin-top: 15%;
+    width: 90%;
+    height: 90%;
+}
+
+/* animations */
 @keyframes bounce {
     0% { margin-top: -200px; }
     21%, 23% { margin-top: -100px; }
