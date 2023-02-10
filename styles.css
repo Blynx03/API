@@ -206,10 +206,12 @@ body {
 }
 
 .desc-conference {
+    height: 100%;
     grid-area: conference;
 }
 
 .desc-division {
+    height: 100%;
     grid-area: division;
 }
 
@@ -224,8 +226,12 @@ body {
     height: 80%;
 }
 
+.list-players {
+    margin-top: 20px;
+}
+
 .player-col-container {
-    height: 90%;
+    height: 83%;
     width: 90%;
 }
 
@@ -315,6 +321,11 @@ body {
     100% { scale: 1; }
 }
 
+@keyframes sway {
+    0%, 50%, 100% { transform: rotate3d(0); }
+    25% { transform: rotate3d(0, 1, 0, 45deg); }
+    75% { transform: rotate3d(0, 1, 0, -45deg); }
+}
 th > div:nth-child(even) {
     background-color: aquamarine;
 }

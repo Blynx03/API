@@ -95,6 +95,7 @@ function showTeams() {
   listTeam.className = 'list-team bg-transparent fs-6 ';
 
   const descContainer = teamAndDescContainer.appendChild(newDiv2);
+  descContainer.className = 'desc-container col-7 bg-dark bg-opacity-25 rounded-5 border border-2 border-warning';
   
   
   // Team description on hover
@@ -111,22 +112,15 @@ function showTeams() {
   tDiv3.className = 'desc-conference t-div3 desc-item'
   tDiv4.className = 'desc-division t-div4 desc-item'
 
+
     // conference and division containers
     const oneDiv = document.createElement('div');
     const twoDiv = document.createElement('div');
     const confContainer = tDiv3.appendChild(oneDiv);
     const divisionContainer = tDiv4.appendChild(twoDiv);
-    confContainer.className = 'conference fs-3 px-3 pt-1 pb-3 mt-3 border border-3 border-dark shadow rounded-3';
-    divisionContainer.className = 'division fs-3 px-3 pt-1 pb-3 border border-3 border-dark shadow rounded-3';
-    confContainer.textContent = 'CONFERENCE:';
-    divisionContainer.textContent = 'DIVISION:';
-    
-    const child1Div = document.createElement('div');
-    const child2Div = document.createElement('div');
-    const conferenceValue = confContainer.appendChild(child1Div);
-    const divisionValue = divisionContainer.appendChild(child2Div);
-    conferenceValue.className = 'conf-value fs-4 text-light d-flex justify-content-center';
-    divisionValue.className = 'division-value fs-4 text-light d-flex justify-content-center';
+
+    confContainer.className = 'conference fs-3 px-3 pt-1 pb-3 mt-3';
+    divisionContainer.className = 'division fs-3 px-3 pt-1 pb-3';
 
 
   // removing duplicates
@@ -137,24 +131,52 @@ function showTeams() {
     return accumulator;
   }, []);
 
+
   // teams handling values when mouse over
   function handleMouseOver(key) {
     let team = teams[key];
     let arrTeamName = team.split(" ");
     let lastString = arrTeamName[arrTeamName.length - 1].toLowerCase();
-    let conf = conference[key];
-    let divi = division[key];
     if (lastString === '76ers') {
       lastString = 'p76ers';
     }
-    descContainer.className = 'desc-container col-7 bg-dark bg-opacity-25 rounded-5 border border-2 border-warning';
-    descContainer.style.animation = 'appear 1s ease',
-                                    'enlarge 2s ease';
-    tDiv1.innerHTML = `<img src='images/nba-logo2.png' class='logo-nba desc-nba-logo' />`
-    tDiv2.innerHTML = `<img src='images/team/${lastString}.png' class='logo-team info-team-logo' />`
 
-    conferenceValue.textContent = conf;
-    divisionValue.textContent = divi;
+    const cContainer = document.querySelector('.conference');
+          cContainer.className = 'conference fs-3 px-3 pt-1 pb-3 mt-3 border border-3 border-dark shadow rounded-3';
+          cContainer.textContent = 'CONFERENCE:';
+
+    const dContainer = document.querySelector('.division');
+          dContainer.className = 'division fs-3 px-3 pt-1 pb-3 border border-3 border-dark shadow rounded-3';
+          dContainer.textContent = 'DIVISION:';
+
+    const descriptionContainer = document.querySelector('.desc-container');
+          descriptionContainer.className = 'desc-container col-7 bg-dark bg-opacity-25 rounded-5 border border-2 border-warning';
+          descriptionContainer.style.animation = 'appear 1s ease',
+                                    'enlarge 2s ease';
+
+    const nbaCont = document.querySelector('.desc-nba-logo');
+          nbaCont.innerHTML = `<img src='images/nba-logo2.png' class='logo-nba desc-nba-logo' />`;
+    
+    const nbaLogo = document.querySelector('.logo-nba');
+          nbaLogo.style.animation = "enlarge 0.5s linear";
+
+    const teamCont = document.querySelector('.desc-team-logo');
+          teamCont.innerHTML = `<img src='images/team/${lastString}.png' class='logo-team info-team-logo' />`
+
+    const teamLogo = document.querySelector('.logo-team');
+          teamLogo.style.animation = "sway 5s linear infinite";
+
+    const child1Div = document.createElement('div');
+    const cValue = confContainer.appendChild(child1Div);
+          cValue.className = 'conf-value fs-4 text-light d-flex justify-content-center';
+          cValue.textContent = conference[key];
+          cValue.style.animation = 'appear 2.5s ease-out';
+    
+    const child2Div = document.createElement('div');
+    const dValue = divisionContainer.appendChild(child2Div);
+          dValue.className = 'division-value fs-4 text-light d-flex justify-content-center';
+          dValue.textContent = division[key];
+          dValue.style.animation = 'appear 2.5s ease-out';
   }
 
 
@@ -179,9 +201,10 @@ function showTeams() {
     newDiv.className = "team-content text-light bg-opacity-75 px-3 py-1 fs-6 ";
 
     newDiv.setAttribute("id", lastString);
-    let addListen = document.getElementById(lastString);
+    // let addListen = document.getElementById(lastString);
     newDiv.setAttribute('data-alias', lastString);
   }
+
 
   // adding event listeners to teams
     const addListenToTeams = document.querySelectorAll('.team-content');
@@ -217,9 +240,10 @@ function showPlayers() {
         categoryTitle.className = 'category-title bg-transparent fs-4 ';
         categoryTitle.textContent = 'Players';
   const listPlayer = playerContainer.appendChild(newDiv4);
-        listPlayer.className = 'list-team scroll bg-transparent fs-6 ';
+        listPlayer.className = 'list-players scroll bg-transparent fs-6 ';
 
   const descContainer = playerAndDescContainer.appendChild(newDiv2);
+        descContainer.className = 'desc-container col-7 bg-dark bg-opacity-25 rounded-5 border border-2 border-warning';
 
   // Player description on hover
   let t1 = document.createElement('div');
@@ -235,23 +259,16 @@ function showPlayers() {
   tDiv3.className = 'desc-conference t-div3 desc-item'
   tDiv4.className = 'desc-division t-div4 desc-item'
 
+
   // team name and position containers
   const oneDiv = document.createElement('div');
   const twoDiv = document.createElement('div');
   const playerTeamContainer = tDiv3.appendChild(oneDiv);
   const playerPositionContainer = tDiv4.appendChild(twoDiv);
-  playerTeamContainer.className = 'conference fs-3 px-3 pt-1 pb-3 mt-3 border border-3 border-dark shadow rounded-3';
-  playerPositionContainer.className = 'division fs-3 px-3 pt-1 pb-3 border border-3 border-dark shadow rounded-3';
-  playerTeamContainer.textContent = 'TEAM:';
-  playerPositionContainer.textContent = 'POSITION:';
-  
-  const child1Div = document.createElement('div');
-  const child2Div = document.createElement('div');
-  const playerTeamValue = playerTeamContainer.appendChild(child1Div);
-  const playerPositionValue = playerPositionContainer.appendChild(child2Div);
-  playerTeamValue.className = 'conf-value fs-4 text-light d-flex justify-content-center';
-  playerPositionValue.className = 'division-value fs-4 text-light d-flex justify-content-center';
 
+
+  playerTeamContainer.className = 'conference fs-3 px-3 pt-1 pb-3 mt-3';
+  playerPositionContainer.className = 'division fs-3 px-3 pt-1 pb-3';
 
   // players handling values when mouse over
   function handleMouseOver(key) {
@@ -265,14 +282,46 @@ function showPlayers() {
       fName = (playersLastName[key] === 'Smith') ? 'MichaelS' : 'MichaelA';
     }
   
-    descContainer.className = 'right-container player-desc-container col-7 bg-dark bg-opacity-25 rounded-5 border border-2 border-warning';
-    descContainer.style.animation = 'appear 1s ease',
-                                    'enlarge 2s ease';
-    tDiv1.innerHTML = `<img src='images/nba-logo2.png' class='logo-nba desc-nba-logo' />`
-    tDiv2.innerHTML = `<img src='images/players/${fName}.png' class='logo-team info-player-pic' />`
+    const tContainer = document.querySelector('.conference');
+          tContainer.className = 'conference fs-3 px-3 pt-1 pb-3 mt-3 border border-3 border-dark shadow rounded-3';
+          tContainer.textContent = 'TEAM:';
 
-    playerTeamValue.textContent = team;
-    playerPositionValue.classList.add('text-light');
+    const pContainer = document.querySelector('.division');
+          pContainer.className = 'division fs-3 px-3 pt-1 pb-3 border border-3 border-dark shadow rounded-3';
+          pContainer.textContent = 'POSITION:'
+
+    const playerDescriptionContainer = document.querySelector('.desc-container');
+          playerDescriptionContainer.classList.add('right-container', 'player-desc-container', 'col-7', 'bg-dark', 'bg-opacity-25', 'rounded-5', 'border', 'border-2', 'border-warning');
+          playerDescriptionContainer.style.animation = 'appear 1s ease',
+                                    'enlarge 2s ease';
+
+    const nbaCont = document.querySelector('.desc-nba-logo');
+          nbaCont.innerHTML = `<img src='images/nba-logo2.png' class='logo-nba desc-nba-logo' />`;      
+
+    const nbaLogo = document.querySelector('.logo-nba');
+          nbaLogo.style.animation = "enlarge 0.5s linear";
+
+    const pPicture = document.querySelector('.desc-team-logo')
+          pPicture.innerHTML = `<img src='images/players/${fName}.png' class='logo-team info-player-pic' />`
+
+    const teamLogo = document.querySelector('.logo-team');
+          teamLogo.style.animation = "appear 2s linear infinite"; 
+    
+
+    const child1Div = document.createElement('div');
+    const tValue = tContainer.appendChild(child1Div);
+          tValue.className = 'conf-value fs-4 text-light d-flex justify-content-center';
+          tValue.textContent = teams[key];
+          tValue.style.animation = 'enlarge 2.5s ease-out';
+    
+    const child2Div = document.createElement('div');
+    const pValue = pContainer.appendChild(child2Div);
+          pValue.className = 'division-value fs-4 text-light d-flex justify-content-center';
+          pValue.textContent = playersPosition[key];
+          pValue.style.animation = 'enlarge 2.5s ease-out';
+
+    
+    pValue.classList.add('text-light');
 
     switch(pPosition) {
       case 'F': pPosition = 'Forward';
@@ -290,12 +339,13 @@ function showPlayers() {
       case 'F-C': pPosition = 'Forward-Center';
                 break;
       case '': pPosition = 'No record on file';
-                playerPositionValue.classList.remove('text-light');
-                playerPositionValue.style.color = "tomato";
+                pValue.classList.remove('text-light');
+                pValue.style.color = "tomato";
                 break;
     }
-    playerPositionValue.textContent = pPosition;
+    pValue.textContent = pPosition;
   }
+
 
     // showing list of players on left side with corresponding logo
     for (let j = 0; j < playersFirstName.length; j++) {
@@ -322,6 +372,7 @@ function showPlayers() {
       let addListen = document.getElementById(lastString);
       newDiv.setAttribute('data-alias', lastString);
     }
+
 
   // adding event listeners to players
   const addListenToPlayers = document.querySelectorAll('.team-content');
