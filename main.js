@@ -383,7 +383,6 @@ function showPlayers() {
       newDiv.className = 'players team-content text-light bg-opacity-75 px-3 py-1 ';
   
       newDiv.setAttribute('id', playersLastName[j].toLowerCase());
-      // let addListen = document.getElementById(lastString);
       newDiv.setAttribute('data-alias', playersLastName[j]);
     }
 
