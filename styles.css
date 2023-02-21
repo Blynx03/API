@@ -33,7 +33,7 @@ body {
 }
 
 .main-container {
-    height: auto;
+    height: 75%;
 }
 
 .main-container > div:nth-child(even) {
@@ -47,6 +47,7 @@ body {
 
 .header-container > h1{
     font-size: 6rem;
+    align-self: auto;
 }
 
 .nba-text {
@@ -66,10 +67,6 @@ body {
     letter-spacing: 0.5rem;
 }
 
-/* .teams-col:before {
-    opacity: .5;
-} */
-
 .choice-container {
     height: 8%;
 }
@@ -85,6 +82,8 @@ body {
 
 .category-container {
     position: relative;
+    width: 95%;
+    margin: 1rem auto;
     animation: appear 2s ease forwards,
             enlarge 2s ease forwards;
 }
@@ -96,6 +95,8 @@ body {
     grid-template-rows: auto;
     grid-template-columns: 0.8fr 2fr;
     grid-template-areas: "team-list team-desc";
+    padding-left: .5rem;
+    padding-right: .5rem;
 }
 
 
@@ -118,7 +119,8 @@ body {
 
 .category-title {
     grid-area: sub-title;
-    margin-left: 8%;
+    margin-left: 20%;
+    font-size: 1.4rem;
 }
 
 .list-team {
@@ -129,6 +131,7 @@ body {
     cursor: pointer;
     display: inline-block;
     width: 70%;
+    padding-left: 2rem;
     /* width: 30%; */
 }
 
@@ -137,17 +140,10 @@ body {
     height:26px;
     margin-left: 20px;
     float: left;
+    margin-top: 5px;
 }
 
-@mixin custom-container($padding-x: $container-padding-x, ) {
-    
-}
 
-/* .pacers:hover, .knicks:hover, .celtics:hover, .grizzlies:hover,
-.raptors:hover, .thunder:hover, .pistons:hover, .clippers:hover,
-.warriors:hover, .p76ers:hover, .jazz:hover, .kings:hover, .cavaliers:hover,
-.rockets:hover, .blazers:hover, .hawks:hover, .magic:hover {
-    */
 .team-content:hover {
     background-color: #191919;
     filter: opacity(.6);
@@ -182,6 +178,8 @@ body {
     grid-area: nba-logo;
     z-index: 1;
     opacity: 1;
+    background-color: hsla(100, 100%, 100%, 0.2);
+    border-radius: 10px;
 }
 
 .desc-team-logo {
@@ -228,15 +226,16 @@ body {
 
 .list-players {
     margin-top: 20px;
+    height: 100%;
 }
 
 .player-col-container {
-    height: 83%;
+    height: 70%;
     width: 90%;
 }
 
 .scroll {
-    max-height: 80%;
+    max-height: 100%;
     overflow-y: scroll;
 }
 
@@ -329,3 +328,357 @@ body {
 th > div:nth-child(even) {
     background-color: aquamarine;
 }
+
+/* responsive design */
+
+@media screen and (max-width: 1400px) {
+    .main-page:before {
+        background-size: 140%;
+    }
+}
+   
+@media screen and (max-width: 1300px) {
+    .main-page:before {
+        background-size: 160%;
+        background-position: -550px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .team-content {
+        flex-wrap: nowrap;
+    }
+
+    .teams-desc-container {
+        grid-template-columns: 1fr 2fr;
+    }
+
+    .desc-container {
+        left: 3%;
+    }
+}
+
+@media screen and (max-width: 1110px) {
+    .main-page:before {
+        background-size: 200%;
+        background-position-x: -890px;
+    }
+
+    .team-logo {
+        width: 18px;
+        height: 18px;
+    }
+    .list-team {
+        font-size: 0.95rem;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .list-team {
+        font-size: 0.95rem;
+    }
+}
+
+@media screen and (max-width: 930px) {
+    .main-page:before {
+        background-size: 240%;
+        background-position: -950px;
+    }
+
+    .teams-desc-container {
+        grid-template-columns: 1fr 2fr;
+    }
+    .header-container > h1 {
+        font-size: 4.5rem;
+    }
+
+    .header-text {
+        margin-bottom: 0;
+        align-self: flex-end;
+    }
+
+    .team-content {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 875px) {
+    .scroll {
+        max-height: 100%;
+    }    
+    .team-content {
+        font-size: 0.85rem;
+    }
+   
+    .teams-desc-container {
+        width: 96%;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .main-page:before {
+        background-size: 275%;
+        background-position: -left;
+    }
+
+    .desc-container {
+        padding: 1rem;
+        left: 40px;
+    }
+
+    .header-container > h1 {
+        letter-spacing: 0.5px;
+    }
+
+    .teams-desc-container {
+        grid-template-columns: 1.2fr 2fr;
+    }
+
+    .team-content {
+        font-size: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    #category {
+        font-size: 1rem;
+    }
+    .header-container > h1, .nba-text {
+        font-size: 3.5rem;
+    }
+    .desc-nba-logo {
+        width: auto;
+        height: 90%;
+    }
+    .logo-team {
+        height: 70%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .main-page:before {
+        background-size: 375%;
+    }
+    #category {
+        font-size: 0.8rem;
+    }
+    .conference, .division {
+        letter-spacing: 0px;
+    }
+
+    .desc-nba-logo {
+        height: 75%;
+    }
+
+}
+@media screen and (max-width: 580px) {
+    .header-container > h1, .nba-text {
+        padding-top: 20px;
+        font-size: 2.8rem;
+    }
+    .header-container {
+        letter-spacing: 0;
+    }
+
+    .sub-title {
+        font-size: 1.3rem;
+        transform: translateX(-40%);
+    }
+
+    .team-content {
+        padding-left: 1rem;
+    }
+  
+}
+
+@media screen and (max-width: 400px) {
+    .header-container {
+        padding-top: 0.5rem;
+        height: 15%;
+        position: relative;
+    }
+
+    .nba-text, .header-text {
+        position: absolute;
+        padding-top: 0.25rem !important;
+        margin-left: 10px;
+        line-height: 2.7rem;
+        width: 60vw;
+        font-size: 2.4rem;
+    }
+
+    .header-text {
+        left: 20px;
+    }
+
+    .nba-text {
+        color: #2b77e6;
+        top: 40px;
+        left: -10px;
+    }
+
+    .header-logo {
+        position: absolute;
+        top: 1%;
+        right: 2%;
+        width: 115px;
+        height: 80px;
+    }
+
+    #category {
+        width: 50% !important;
+        position: absolute;
+        top: 0px;
+        left: 35%;
+        height: 36px;
+    }
+
+    .category-title {
+        font-size: 0.9rem;
+    }
+
+    .player-col-container > .category-title {
+        padding-top: 20px;
+    }
+
+    .left-container.player-col-container {
+        height: 72%;
+    }
+
+    .list-players {
+        margin-top: 5px;
+    }
+
+    .main-container {
+        position: absolute;
+        width: 95%;
+        top: 20%;
+        left: 2.5%;
+        height: 74%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .players.team-content {
+        font-size: 0.65rem;
+    }
+
+    .players-desc-container.teams-desc-container {
+        grid-template-columns: 1.5fr 2fr;
+    }
+
+    .players-container.desc-container {
+        width: 50% !important;
+        left: 50px;
+    }
+
+    #smith, #anigbogu, #johnson {
+        font-size: 0.6rem;
+    }
+
+    #brown, #evans, #gortat, #bogut, #randolph, #teodosic, #wright, #ansley {
+        font-size: 0.55rem;
+    }
+
+    #brooks {
+        font-size: 0.48rem;
+    }
+
+    #richardson {
+        font-size: 0.43rem;
+    }
+
+    .list-players.scroll {
+        height: 90%;
+    }
+
+    .scroll {
+        height: 80%;
+        width: 100%;
+    }
+
+    .sub-title {
+        font-size: 1rem;
+        margin-left: 45%;
+        transform: translateX(-40%);
+    }
+
+    .teams-desc-container {
+        padding: 0 !important;
+        grid-template-columns: 1.3fr 2fr;
+        height: 94%;
+    }
+
+    .left-container {
+        height: 93%;
+        width: 100%;
+    }
+
+    .list-team {
+        height: 90%;
+    }
+
+    .team-content {
+        font-size: 0.55rem;
+        width: 100%;
+        padding: 0.5rem;
+        display: inline;
+    }
+
+    #thunder, #blazers, #warriors {
+        font-size: 0.47rem;
+    }
+
+    .team-logo {
+        display: inline;
+        margin-left: 10px;
+        width: 14px;
+        height: 14px;
+        /* float: left; */
+    }
+
+    .desc-container {
+        width: 53% !important;
+        padding: 1rem 0.5rem;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(9, 1fr);
+        grid-template-areas: "team-logo team-logo nba-logo nba-logo nba-logo nba-logo nba-logo"
+                             "team-logo team-logo nba-logo nba-logo nba-logo nba-logo nba-logo"
+                             "team-logo team-logo nba-logo nba-logo nba-logo nba-logo nba-logo"
+                            "conference conference conference conference conference conference conference"
+                            "conference conference conference conference conference conference conference"
+                            ". . . . . . ."
+                            "division division division division division division division"
+                            "division division division division division division division"
+                            ". . . . . . .";
+        }
+    
+    .logo-team {
+        margin: 0;
+        margin-top: 18px;
+        width: 50px;
+        height: 50%;
+    }
+
+    .logo-team.info-player-pic {
+        margin-top: 12px;
+    }
+
+    .desc-nba-logo {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        height: 74%;
+        background-color: hsla(100, 100%, 100%, 0.4);
+        border-radius: 5px;
+    }
+
+    .conference, .division {
+        font-size: 1.2rem !important;
+    }
+
+    .conf-value, .division-value {
+        font-size: 0.8rem;
+    }
+}
+    
