@@ -8,6 +8,9 @@ This is a simple REST API project that provides information about basketball tea
 - Get information about a specific team, including its name, location, division and conference.
 - Fetch a list of players for a particular team.
 - Access player profiles, including their name, position, and statistics.
+- Responsive design to cater desktop and mobile devices.
+
+![Alt text](mainpage.png)
 
 ## Usage
 
@@ -20,9 +23,11 @@ To use this API, make HTTP requests to the following endpoints:
 The project includes information about basketball teams, including:
 
 - Team name
-- Team location
+- Team conference
 - Team division
 - Team logo (image)
+
+![Alt text](team.png)
 
 ## Player Information
 
@@ -32,10 +37,12 @@ The API provides data on individual players, including:
 - Player position
 - Player image
 
+![Alt text](player.png)
+
 ## Technologies Used
 
 - Programming Languages/Libraries: HTML, CSS, Vanilla Javascript and Bootstrap
-- Hosting: www.balldontlie.io
+- Hosting: www.balldontlie.io --- which was provided by a good samaritan :)
 
 ## Getting Started
 
